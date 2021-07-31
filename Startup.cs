@@ -45,6 +45,8 @@ namespace ApiLoteria
             services.Configure<SectionUrlPage>(sectionUrlPage);
             services.Configure<XPathExpression>(sectionXPathExpression);
             services.AddScoped<ILoteriaServices, LoteriaServices>();
+
+            services.AddResponseCaching();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +68,8 @@ namespace ApiLoteria
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseResponseCaching();
 
             app.UseEndpoints(endpoints =>
             {

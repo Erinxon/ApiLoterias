@@ -9,6 +9,7 @@ namespace ApiLoteria.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
+    [ResponseCache(Location = ResponseCacheLocation.Any, Duration = 5)]
     public class LoteriasController : ControllerBase
     {
         private readonly ILoteriaServices _loteriaServices;
