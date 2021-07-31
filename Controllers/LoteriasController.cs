@@ -21,9 +21,90 @@ namespace ApiLoteria.Controllers
         [HttpGet("nacional")]
         public async Task<ActionResult> GetLoteriaNacional()
         {
-            var loteriaNacional = await _loteriaServices.GetLoteriaNacionalAsync();
-            if (loteriaNacional == null) return BadRequest();
-            return Ok(loteriaNacional);
+            var response = await _loteriaServices.GetLoteriaNacionalAsync();
+            if (response.Data != null) return BadRequest(response);
+            if (!response.Success) return BadRequest(response);
+            return Ok(response);
+        }
+
+        [HttpGet("leidsa")]
+        public async Task<ActionResult> GetLoteriaLeisa()
+        {
+            var response = await _loteriaServices.GetLoteriaLeisaAsync();
+            if (response.Data != null) return BadRequest(response);
+            if (!response.Success) return BadRequest(response);
+            return Ok(response);
+        }
+
+        [HttpGet("anguila")]
+        public async Task<ActionResult> GetLoteriaAnguila()
+        {
+            var response = await _loteriaServices.GetLoteriaAnguilaAsync();
+            if (response.Data != null) return BadRequest(response);
+            if (!response.Success) return BadRequest(response);
+            return Ok(response);
+        }
+
+        [HttpGet("kingLottery")]
+        public async Task<ActionResult> GetLoteriaKingLottery()
+        {
+            var response = await _loteriaServices.GetLoteriaKingLotteryAsync();
+            if (response.Data != null) return BadRequest(response);
+            if (!response.Success) return BadRequest(response);
+            return Ok(response);
+        }
+
+        [HttpGet("americanas")]
+        public async Task<ActionResult> GetLoteriaAmericana()
+        {
+            var response = await _loteriaServices.GetLoteriaAmericanaAsync();
+            if (response.Data != null) return BadRequest(response);
+            if (!response.Success) return BadRequest(response);
+            return Ok(response);
+        }
+
+        [HttpGet("laSuerte")]
+        public async Task<ActionResult> GetLoteriaLaSuerte()
+        {
+            var response = await _loteriaServices.GetLoteriaLaSuerteAsync();
+            if (response.Data != null) return BadRequest(response);
+            if (!response.Success) return BadRequest(response);
+            return Ok(response);
+        }
+
+        [HttpGet("loteDom")]
+        public async Task<ActionResult> GetLoteriaLoteDom()
+        {
+            var response = await _loteriaServices.GetLoteriaLoteDomAsync();
+            if (response.Data != null) return BadRequest(response);
+            if (!response.Success) return BadRequest(response);
+            return Ok(response);
+        }
+
+        [HttpGet("loteka")]
+        public async Task<ActionResult> GetLoteriaLoteka()
+        {
+            var response = await _loteriaServices.GetLoteriaLotekaAsync();
+            if (response.Data != null) return BadRequest(response);
+            if (!response.Success) return BadRequest(response);
+            return Ok(response);
+        }
+
+        [HttpGet("primera")]
+        public async Task<ActionResult> GetLoteriaPrimera()
+        {
+            var response = await _loteriaServices.GetLoteriaPrimeraAsync();
+            if (response.Data != null) return BadRequest(response);
+            if (!response.Success) return BadRequest(response);
+            return Ok(response);
+        }
+        [HttpGet("real")]
+        public async Task<ActionResult> GetLoteriaReal()
+        {
+            var response = await _loteriaServices.GetLoteriaRealAsync();
+            if (response.Data != null) return BadRequest(response);
+            if (!response.Success) return BadRequest(response);
+            return Ok(response);
         }
     }
 }
