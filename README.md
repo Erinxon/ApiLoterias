@@ -1,4 +1,4 @@
-#Api para consultar los resultados de las principales loterías.
+# Api para consultar los resultados de las principales loterías.
 
 #Endpoints Web API
 
