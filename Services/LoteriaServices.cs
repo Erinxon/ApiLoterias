@@ -1,5 +1,4 @@
 ﻿using ApiLoteria.AppSetting;
-using ApiLoteria.Handle;
 using ApiLoteria.Models;
 using ApiLoteria.Response;
 using HtmlAgilityPack;
@@ -29,59 +28,15 @@ namespace ApiLoteria.Services
             {
                 var htmlDoc = await GetHtmlDocument(NameUrlLoteria.Americana);
 
-                var nacionalTitulo = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHTitulo);
-
-                var nacionalFechas = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHFecha);
-
-                var nacionalNumeros = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHNumeros);
-
                 response.Data = new Americanas
                 {
-                    NewYorkTresTrenta = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[0].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(0),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(0)
-                    },
-                    NewYorkOnceTrenta = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[1].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(1),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(1)
-                    },
-                    FloridaDía = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[2].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(2),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(2)
-                    },
-                    FloridaNoche = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[3].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(3),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(3)
-                    },
-                    MegaMillions = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[4].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(4),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(4)
-                    },
-                    PowerBall = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[5].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(5),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(5)
-                    },
-                    CashFourLife = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[6].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(6),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(6)
-                    },
+                    NewYorkTresTrenta = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 0),
+                    NewYorkOnceTrenta = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 1),
+                    FloridaDía = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 2),
+                    FloridaNoche = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 3),
+                    MegaMillions = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 4),
+                    PowerBall = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 5),
+                    CashFourLife = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 6),
                 };
 
             }
@@ -100,41 +55,12 @@ namespace ApiLoteria.Services
             {
                 var htmlDoc = await GetHtmlDocument(NameUrlLoteria.Anguila);
 
-                var nacionalTitulo = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHTitulo);
-
-                var nacionalFechas = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHFecha);
-
-                var nacionalNumeros = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHNumeros);
-
                 response.Data = new Anguila
                 {
-                    AnguilaDiesAM = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[0].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(0),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(0)
-                    },
-                    AnguilaUnaPM = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[1].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(1),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(1)
-                    },
-                    AnguilaCincoPM = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[2].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(2),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(2)
-                    },
-                    AnguilaNuevePM = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[3].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(3),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(3)
-                    },
+                    AnguilaDiesAM = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 0),
+                    AnguilaUnaPM = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 1),
+                    AnguilaCincoPM = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 2),
+                    AnguilaNuevePM = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 3),
                 };
 
             }
@@ -153,77 +79,18 @@ namespace ApiLoteria.Services
             {
                 var htmlDoc = await GetHtmlDocument(NameUrlLoteria.KingLottery);
 
-                var nacionalTitulo = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHTitulo);
-
-                var nacionalFechas = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHFecha);
-
-                var nacionalNumeros = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHNumeros);
-
                 response.Data = new KingLottery
                 {
-                    PickTresDia = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[0].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(0),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(0)
-                    },
-                    PickCuatroDia = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[1].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(1),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(1)
-                    },
-                    QuinielaDoceTrenta = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[2].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(2),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(2)
-                    },
-                    PhilipsburgMedioDia = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[3].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(3),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(3)
-                    },
-                    LotoPoolMedioDia = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[4].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(4),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(4)
-                    },
-                    PickTresNoche = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[5].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(5),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(5)
-                    },
-                    PickCuatroNoche = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[6].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(6),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(6)
-                    },
-                    QuinielaSieteTrenta = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[7].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(7),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(7)
-                    },
-                    PhilipsburgNoche = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[8].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(8),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(8)
-                    },
-                    LotoPoolNoche = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[9].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(9),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(9)
-                    },
+                    PickTresDia = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 0),
+                    PickCuatroDia = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 1),
+                    QuinielaDoceTrenta = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 2),
+                    PhilipsburgMedioDia = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 3),
+                    LotoPoolMedioDia = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 4),
+                    PickTresNoche = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 5),
+                    PickCuatroNoche = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 6),
+                    QuinielaSieteTrenta = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 7),
+                    PhilipsburgNoche = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 8),
+                    LotoPoolNoche = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 9),
                 };
 
             }
@@ -242,23 +109,9 @@ namespace ApiLoteria.Services
             {
                 var htmlDoc = await GetHtmlDocument(NameUrlLoteria.LaSuerte);
 
-                var nacionalTitulo = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHTitulo);
-
-                var nacionalFechas = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHFecha);
-
-                var nacionalNumeros = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHNumeros);
-
                 response.Data = new LaSuerte
                 {
-                    Quiniela = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[0].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(0),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(0)
-                    },
+                    Quiniela = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 0),
                 };
 
             }
@@ -277,53 +130,14 @@ namespace ApiLoteria.Services
             {
                 var htmlDoc = await GetHtmlDocument(NameUrlLoteria.Leidsa);
 
-                var nacionalTitulo = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHTitulo);
-
-                var nacionalFechas = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHFecha);
-
-                var nacionalNumeros = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHNumeros);
-
                 response.Data = new Leidsa
                 {
-                    PegaTresMas = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[0].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(0),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(0)
-                    },
-                    LotoPool = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[1].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(1),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(1)
-                    },
-                    SuperKinoTV = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[2].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(2),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(2)
-                    },
-                    QuinielaLeidsa = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[3].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(3),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(3)
-                    },
-                    LotoMas = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[4].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(4),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(4)
-                    },
-                    SuperPale = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[5].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(5),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(5)
-                    }
+                    PegaTresMas = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 0),
+                    LotoPool = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 1),
+                    SuperKinoTV = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 2),
+                    QuinielaLeidsa = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 3),
+                    LotoMas = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 4),
+                    SuperPale = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 5)
                 };
             }
             catch (Exception ex)
@@ -341,41 +155,12 @@ namespace ApiLoteria.Services
             {
                 var htmlDoc = await GetHtmlDocument(NameUrlLoteria.LoteDom);
 
-                var nacionalTitulo = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHTitulo);
-
-                var nacionalFechas = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHFecha);
-
-                var nacionalNumeros = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHNumeros);
-
                 response.Data = new LoteDom
                 {
-                    Quiniela = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[0].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(0),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(0)
-                    },
-                    ElQuemaitoMayor = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[1].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(1),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(1)
-                    },
-                    SuperPale = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[2].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(2),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(2)
-                    },
-                    AgarraCuatro = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[3].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(3),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(3)
-                    },
+                    Quiniela = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 0),
+                    ElQuemaitoMayor = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 1),
+                    SuperPale = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 2),
+                    AgarraCuatro = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 3)
                 };
 
             }
@@ -394,57 +179,16 @@ namespace ApiLoteria.Services
             {
                 var htmlDoc = await GetHtmlDocument(NameUrlLoteria.Loteka);
 
-                var nacionalTitulo = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHTitulo);
-
-                var nacionalFechas = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHFecha);
-
-                var nacionalNumeros = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHNumeros);
-
                 response.Data = new Loteka
                 {
-                    TocaTres = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[0].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(0),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(0)
-                    },
-                    QuinielaLoteka = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[1].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(1),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(1)
-                    },
-                    MegaChances = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[2].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(2),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(2)
-                    },
-                    MegaChancesRepartidera = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[3].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(3),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(3)
-                    },
-                    ElExtra = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[4].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(4),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(4)
-                    },
-                    MegaLotto = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[5].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(5),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(5)
-                    },
+                    TocaTres = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 0),
+                    QuinielaLoteka = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 1),
+                    MegaChances = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 2),
+                    MegaChancesRepartidera = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 3),
+                    ElExtra = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 4),
+                    MegaLotto = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 5)
 
                 };
-
-
             }
             catch (Exception ex)
             {
@@ -461,51 +205,12 @@ namespace ApiLoteria.Services
             {
                 var htmlDoc = await GetHtmlDocument(NameUrlLoteria.Nacional);
 
-                var nacionalTitulo = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHTitulo);
-
-                var nacionalFechas = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHFecha);
-
-                var nacionalNumeros = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHNumeros);
-
                 response.Data = new Nacional
                 {
-                    JuegaPega = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[0].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(0),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(0)
-                    },
-                    GanaMas = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[1].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(1),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(1)
-                    },
-                    LoteriaNacional = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[2].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(2),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(2)
-                    }
+                    JuegaPega = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 0),
+                    GanaMas = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 1),
+                    LoteriaNacional = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 2)
                 };
-
-                /*
-                nacional.BilletesJueves = new TipoConcurso
-                {
-                    Nombre = nacionalTitulo[3].InnerText,
-                    Fecha = nacionalFechas.ConvertHtmlNodeToString(3),
-                    Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(3)
-                };
-
-                nacional.BilletesDomingo = new TipoConcurso
-                {
-                    Nombre = nacionalTitulo[4].InnerText,
-                    Fecha = nacionalFechas.ConvertHtmlNodeToString(4),
-                    Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(4)
-                };*/
 
             }
             catch (Exception ex)
@@ -523,23 +228,9 @@ namespace ApiLoteria.Services
             {
                 var htmlDoc = await GetHtmlDocument(NameUrlLoteria.Primera);
 
-                var nacionalTitulo = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHTitulo);
-
-                var nacionalFechas = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHFecha);
-
-                var nacionalNumeros = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHNumeros);
-
                 response.Data = new Primera
                 {
-                    LaPrimera = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[0].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(0),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(0)
-                    },
+                    LaPrimera = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 0)
                 };
 
             }
@@ -558,59 +249,15 @@ namespace ApiLoteria.Services
             {
                 var htmlDoc = await GetHtmlDocument(NameUrlLoteria.Real);
 
-                var nacionalTitulo = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHTitulo);
-
-                var nacionalFechas = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHFecha);
-
-                var nacionalNumeros = htmlDoc.DocumentNode
-                .SelectNodes(_xPathExpression.XPATHNumeros);
-
                 response.Data = new Real
                 {
-                    TuFechaReal = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[0].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(0),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(0)
-                    },
-                    PegaCuatroReal = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[1].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(1),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(1)
-                    },
-                    NuevaYolReal = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[2].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(2),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(2)
-                    },
-                    QuinielaReal = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[3].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(3),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(3)
-                    },
-                    LotoPool = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[4].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(4),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(4)
-                    },
-                    LotoReal = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[5].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(5),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(5)
-                    },
-                    SuperPale = new TipoConcurso
-                    {
-                        Nombre = nacionalTitulo[6].InnerText,
-                        Fecha = nacionalFechas.ConvertHtmlNodeToString(6),
-                        Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(6)
-                    },
+                    TuFechaReal = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 0),
+                    PegaCuatroReal = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 1),
+                    NuevaYolReal = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 2),
+                    QuinielaReal = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 3),
+                    LotoPool = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 4),
+                    LotoReal = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 5),
+                    SuperPale = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 6)
                 };
 
             }

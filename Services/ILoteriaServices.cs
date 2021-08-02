@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ApiLoteria.Services
 {
-    public interface ILoteriaServices
+    public interface ILoteriaServices 
     {
         Task<Response<Nacional>> GetLoteriaNacionalAsync();
         Task<Response<Leidsa>> GetLoteriaLeisaAsync();
