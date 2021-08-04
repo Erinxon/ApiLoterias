@@ -27,18 +27,18 @@ namespace ApiLoteria
         public static TipoConcurso GetTipoConcurso(HtmlDocument htmlDoc, 
             XPathExpression _xPath, int posicion)
         {
-            var nacionalTitulo = htmlDoc.DocumentNode
+            var titulos = htmlDoc.DocumentNode
                 .SelectNodes(_xPath.XPATHTitulo);
-            var nacionalFechas = htmlDoc.DocumentNode
+            var fechas = htmlDoc.DocumentNode
             .SelectNodes(_xPath.XPATHFecha);
-            var nacionalNumeros = htmlDoc.DocumentNode
+            var numeros = htmlDoc.DocumentNode
             .SelectNodes(_xPath.XPATHNumeros);
 
             return new TipoConcurso
             {
-                Nombre = nacionalTitulo[posicion].InnerText,
-                Fecha = nacionalFechas.ConvertHtmlNodeToString(posicion),
-                Numeros = nacionalNumeros.ConvertHtmlNodeToArrayString(posicion)
+                Nombre = titulos[posicion].InnerText,
+                Fecha = fechas.ConvertHtmlNodeToString(posicion),
+                Numeros = numeros.ConvertHtmlNodeToArrayString(posicion)
             };
         }
     }

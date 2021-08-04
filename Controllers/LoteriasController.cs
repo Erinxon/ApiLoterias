@@ -1,4 +1,6 @@
-﻿using ApiLoteria.Services;
+﻿using ApiLoteria.Models;
+using ApiLoteria.Response;
+using ApiLoteria.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,102 +22,93 @@ namespace ApiLoteria.Controllers
         }
 
         [HttpGet("nacional")]
-        public async Task<ActionResult> GetLoteriaNacional()
+        public async Task<ActionResult<Response<Nacional>>> GetLoteriaNacional()
         {
             var response = await _loteriaServices.GetLoteriaNacionalAsync();
-            return !response.Success ?
-                BadRequest(response) : response.Data != null ?
-                BadRequest(response) :
-                Ok(response);
+            return !response.Success || response.Data == null ?
+                 BadRequest(response) :
+                 Ok(response);
         }
 
         [HttpGet("leidsa")]
-        public async Task<ActionResult> GetLoteriaLeisa()
+        public async Task<ActionResult<Response<Leidsa>>> GetLoteriaLeisa()
         {
             var response = await _loteriaServices.GetLoteriaLeisaAsync();
-            return !response.Success ?
-                 BadRequest(response) : response.Data != null ?
+            return !response.Success || response.Data == null ?
                  BadRequest(response) :
                  Ok(response);
         }
 
         [HttpGet("anguila")]
-        public async Task<ActionResult> GetLoteriaAnguila()
+        public async Task<ActionResult<Response<Anguila>>> GetLoteriaAnguila()
         {
             var response = await _loteriaServices.GetLoteriaAnguilaAsync();
-            return !response.Success ?
-                 BadRequest(response) : response.Data != null ?
-                 BadRequest(response) :
-                 Ok(response);
+            return !response.Success || response.Data == null ?
+                  BadRequest(response) :
+                  Ok(response);
         }
 
         [HttpGet("kingLottery")]
-        public async Task<ActionResult> GetLoteriaKingLottery()
+        public async Task<ActionResult<Response<KingLottery>>> GetLoteriaKingLottery()
         {
             var response = await _loteriaServices.GetLoteriaKingLotteryAsync();
-            return !response.Success ? 
-                BadRequest(response) : response.Data != null ? 
-                BadRequest(response) : 
-                Ok(response);
+            return !response.Success || response.Data == null ?
+                 BadRequest(response) :
+                 Ok(response);
         }
 
         [HttpGet("americanas")]
-        public async Task<ActionResult> GetLoteriaAmericana()
+        public async Task<ActionResult<Response<Americanas>>> GetLoteriaAmericana()
         {
             var response = await _loteriaServices.GetLoteriaAmericanaAsync();
-            return !response.Success ?
-                 BadRequest(response) : response.Data != null ?
-                 BadRequest(response) :
-                 Ok(response);
+            return !response.Success || response.Data == null ?
+                  BadRequest(response) :
+                  Ok(response);
         }
 
         [HttpGet("laSuerte")]
-        public async Task<ActionResult> GetLoteriaLaSuerte()
+        public async Task<ActionResult<Response<LaSuerte>>> GetLoteriaLaSuerte()
         {
             var response = await _loteriaServices.GetLoteriaLaSuerteAsync();
-            return !response.Success ?
-                BadRequest(response) : response.Data != null ?
-                BadRequest(response) :
-                Ok(response);
+            return !response.Success || response.Data == null ?
+                 BadRequest(response) :
+                 Ok(response);
         }
 
         [HttpGet("loteDom")]
-        public async Task<ActionResult> GetLoteriaLoteDom()
+        public async Task<ActionResult<Response<LoteDom>>> GetLoteriaLoteDom()
         {
             var response = await _loteriaServices.GetLoteriaLoteDomAsync();
-            return !response.Success ?
-                BadRequest(response) : response.Data != null ?
-                BadRequest(response) :
-                Ok(response);
+            return !response.Success || response.Data == null ?
+                  BadRequest(response) :
+                  Ok(response);
         }
 
         [HttpGet("loteka")]
-        public async Task<ActionResult> GetLoteriaLoteka()
+        public async Task<ActionResult<Response<Loteka>>> GetLoteriaLoteka()
         {
             var response = await _loteriaServices.GetLoteriaLotekaAsync();
-            return !response.Success ?
-                BadRequest(response) : response.Data != null ?
-                BadRequest(response) :
-                Ok(response);
+            return !response.Success || response.Data == null ?
+                 BadRequest(response) :
+                 Ok(response);
         }
 
         [HttpGet("primera")]
-        public async Task<ActionResult> GetLoteriaPrimera()
+        public async Task<ActionResult<Response<Primera>>> GetLoteriaPrimera()
         {
             var response = await _loteriaServices.GetLoteriaPrimeraAsync();
-            return !response.Success ?
-                BadRequest(response) : response.Data != null ?
-                BadRequest(response) :
-                Ok(response);
-        }
-        [HttpGet("real")]
-        public async Task<ActionResult> GetLoteriaReal()
-        {
-            var response = await _loteriaServices.GetLoteriaRealAsync();
-            return !response.Success ?
-                 BadRequest(response) : response.Data != null ?
+            return !response.Success || response.Data == null ?
                  BadRequest(response) :
                  Ok(response);
+        }
+
+        [HttpGet("real")]
+        public async Task<ActionResult<Response<Real>>> GetLoteriaReal()
+        {
+            var response = await _loteriaServices.GetLoteriaRealAsync();
+            return !response.Success || response.Data == null ?
+                  BadRequest(response) :
+                  Ok(response);
         }
     }
 }
