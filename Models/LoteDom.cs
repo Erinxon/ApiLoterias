@@ -7,9 +7,9 @@ namespace ApiLoteria.Models
 {
     public class LoteDom
     {
-        public TipoConcurso Quiniela { get; set; }
-        public TipoConcurso ElQuemaitoMayor { get; set; }
-        public TipoConcurso SuperPale { get; set; }
-        public TipoConcurso AgarraCuatro { get; set; }
+        public Concurso Quiniela { get; set; }
+        public Concurso ElQuemaitoMayor { get; set; }
+        public Concurso SuperPale { get; set; }
+        public Concurso AgarraCuatro { get; set; }
     }
 }

@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace ApiLoteria.Models
 {
-    public class Primera
+    public class ConcursoBase
     {
-        public Concurso LaPrimera { get; set;}
+        public string Nombre { get; set; }
+        public string Fecha { get; set; }
     }
 }

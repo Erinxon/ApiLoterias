@@ -7,10 +7,10 @@ namespace ApiLoteria.Models
 {
     public class Nacional
     {
-        public TipoConcurso JuegaPega { get; set; }
-        public TipoConcurso GanaMas { get; set; }
-        public TipoConcurso LoteriaNacional { get; set; }
-        public TipoConcurso BilletesJueves { get; set; }
-        public TipoConcurso BilletesDomingo { get; set; }
+        public Concurso JuegaPega { get; set; }
+        public Concurso GanaMas { get; set; }
+        public Concurso LoteriaNacional { get; set; }
+        public ConcursoEspecial BilletesJueves { get; set; }
+        public ConcursoEspecial BilletesDomingo { get; set; }
     }
 }

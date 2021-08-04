@@ -7,11 +7,11 @@ namespace ApiLoteria.Models
 {
     public class Loteka
     {
-        public TipoConcurso TocaTres { get; set; }
-        public TipoConcurso QuinielaLoteka { get; set; }
-        public TipoConcurso MegaChances { get; set; }    
-        public TipoConcurso MegaChancesRepartidera { get; set; }
-        public TipoConcurso ElExtra { get; set; }
-        public TipoConcurso MegaLotto { get; set; }
+        public Concurso TocaTres { get; set; }
+        public Concurso QuinielaLoteka { get; set; }
+        public Concurso MegaChances { get; set; }    
+        public Concurso MegaChancesRepartidera { get; set; }
+        public Concurso ElExtra { get; set; }
+        public Concurso MegaLotto { get; set; }
     }
 }

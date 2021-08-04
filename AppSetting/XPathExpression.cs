@@ -10,5 +10,6 @@ namespace ApiLoteria.AppSetting
         public string XPATHTitulo { get; set; }
         public string XPATHFecha { get; set; }
         public string XPATHNumeros { get; set; }
+        public string XPATHNumerosEspeciales { get; set; }  
     }
 }

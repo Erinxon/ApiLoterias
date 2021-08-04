@@ -209,9 +209,10 @@ namespace ApiLoteria.Services
                 {
                     JuegaPega = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 0),
                     GanaMas = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 1),
-                    LoteriaNacional = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 2)
+                    LoteriaNacional = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 2),
+                    BilletesJueves = Handle.GetTipoConcursoEspecial(htmlDoc, _xPathExpression, 0),
+                    BilletesDomingo = Handle.GetTipoConcursoEspecial(htmlDoc, _xPathExpression, 1)
                 };
-
             }
             catch (Exception ex)
             {

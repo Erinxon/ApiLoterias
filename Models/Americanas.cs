@@ -7,12 +7,12 @@ namespace ApiLoteria.Models
 {
     public class Americanas
     {
-        public TipoConcurso NewYorkTresTrenta { get; set; }
-        public TipoConcurso NewYorkOnceTrenta { get; set; }
-        public TipoConcurso FloridaDía { get; set; }
-        public TipoConcurso FloridaNoche { get; set; }
-        public TipoConcurso MegaMillions { get; set; }
-        public TipoConcurso PowerBall { get; set; }
-        public TipoConcurso CashFourLife { get; set; }
+        public Concurso NewYorkTresTrenta { get; set; }
+        public Concurso NewYorkOnceTrenta { get; set; }
+        public Concurso FloridaDía { get; set; }
+        public Concurso FloridaNoche { get; set; }
+        public Concurso MegaMillions { get; set; }
+        public Concurso PowerBall { get; set; }
+        public Concurso CashFourLife { get; set; }
     }
 }
