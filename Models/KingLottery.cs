@@ -7,15 +7,15 @@ namespace ApiLoteria.Models
 {
     public class KingLottery
     {
-        public Concurso PickTresDia { get; set; }
-        public Concurso PickCuatroDia { get; set; }
-        public Concurso QuinielaDoceTrenta { get; set; }
-        public Concurso PhilipsburgMedioDia { get; set; }
-        public Concurso LotoPoolMedioDia { get; set; }
-        public Concurso PickTresNoche { get; set; }
-        public Concurso PickCuatroNoche { get; set; }
-        public Concurso QuinielaSieteTrenta { get; set; }
-        public Concurso PhilipsburgNoche { get; set; }
-        public Concurso LotoPoolNoche { get; set; }
+        public Sorteo PickTresDia { get; set; }
+        public Sorteo PickCuatroDia { get; set; }
+        public Sorteo QuinielaDoceTrenta { get; set; }
+        public Sorteo PhilipsburgMedioDia { get; set; }
+        public Sorteo LotoPoolMedioDia { get; set; }
+        public Sorteo PickTresNoche { get; set; }
+        public Sorteo PickCuatroNoche { get; set; }
+        public Sorteo QuinielaSieteTrenta { get; set; }
+        public Sorteo PhilipsburgNoche { get; set; }
+        public Sorteo LotoPoolNoche { get; set; }
     }
 }

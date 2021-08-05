@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ApiLoteria.Models
 {
-    public class Concurso : ConcursoBase
+    public class Sorteo : SorteoBase
     {
         public string[] Numeros { get; set; }
     }

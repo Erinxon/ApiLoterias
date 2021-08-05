@@ -7,12 +7,12 @@ namespace ApiLoteria.Models
 {
     public class Real
     {
-        public Concurso TuFechaReal { get; set; }
-        public Concurso PegaCuatroReal { get; set; }
-        public Concurso NuevaYolReal { get; set; }
-        public Concurso QuinielaReal { get; set; }
-        public Concurso LotoPool { get; set; }
-        public Concurso LotoReal { get; set; }
-        public Concurso SuperPale { get; set; }
+        public Sorteo TuFechaReal { get; set; }
+        public Sorteo PegaCuatroReal { get; set; }
+        public Sorteo NuevaYolReal { get; set; }
+        public Sorteo QuinielaReal { get; set; }
+        public Sorteo LotoPool { get; set; }
+        public Sorteo LotoReal { get; set; }
+        public Sorteo SuperPale { get; set; }
     }
 }

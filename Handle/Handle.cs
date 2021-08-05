@@ -30,15 +30,15 @@ namespace ApiLoteria
             return imagen;
         }
 
-        private static List<ConcursoEspecialResultado> ObtenerNumerosGanadoresEspeciales(this HtmlNodeCollection htmlNodes, int posicion)
+        private static List<SorteoEspecialResultado> ObtenerNumerosGanadoresEspeciales(this HtmlNodeCollection htmlNodes, int posicion)
         {
-            List<ConcursoEspecialResultado> numerosGanadoresEspciales = new();
+            List<SorteoEspecialResultado> numerosGanadoresEspciales = new();
             foreach (var row in htmlNodes[posicion].SelectNodes(@"tr"))
             {
                 var nodes = row.SelectNodes("td");
                 if (nodes.Count > 1)
                 {
-                    numerosGanadoresEspciales.Add(new ConcursoEspecialResultado
+                    numerosGanadoresEspciales.Add(new SorteoEspecialResultado
                     {
                         NumeroEspecial = nodes[0].InnerText.Replace("\n\n", "").Replace(" \n", ""),
                         Bonus = nodes[1].InnerText.Replace("\n\n", "").Replace(" \n", ""),
@@ -46,7 +46,7 @@ namespace ApiLoteria
                 }
                 else
                 {
-                    numerosGanadoresEspciales.Add(new ConcursoEspecialResultado
+                    numerosGanadoresEspciales.Add(new SorteoEspecialResultado
                     {
                         NumeroEspecial = nodes[0].InnerText.Replace("\n\n", "").Replace(" \n", ""),
                     });
@@ -55,7 +55,7 @@ namespace ApiLoteria
             return numerosGanadoresEspciales;
         }
 
-        public static Concurso GetTipoConcurso(HtmlDocument htmlDoc, 
+        public static Sorteo GetTipoConcurso(HtmlDocument htmlDoc, 
             XPathExpression _xPath, int posicion)
         {
             var titulos = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHTitulo);
@@ -63,7 +63,7 @@ namespace ApiLoteria
             var numeros = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHNumeros);
             var imagenes = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHImagenes);
 
-            return new Concurso
+            return new Sorteo
             {
                 Nombre = titulos[posicion].InnerText,
                 Fecha = fechas.ObtenerFecha(posicion),
@@ -72,7 +72,7 @@ namespace ApiLoteria
             };
         }
 
-        public static ConcursoEspecial GetTipoConcursoEspecial(HtmlDocument htmlDoc,
+        public static SorteoEspecial GetTipoConcursoEspecial(HtmlDocument htmlDoc,
             XPathExpression _xPath, int posicion, int posicionImg)
         {
             var titulos = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHTitulo);
@@ -80,7 +80,7 @@ namespace ApiLoteria
             var numeros = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHNumerosEspeciales);
             var imagenes = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHImagenes);
 
-            return new ConcursoEspecial
+            return new SorteoEspecial
             {
                 Nombre = titulos[posicion].InnerText,
                 Fecha = fechas.ObtenerFecha(posicion),

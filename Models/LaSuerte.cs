@@ -7,6 +7,6 @@ namespace ApiLoteria.Models
 {
     public class LaSuerte
     {
-        public Concurso Quiniela { get; set; }
+        public Sorteo Quiniela { get; set; }
     }
 }

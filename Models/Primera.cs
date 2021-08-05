@@ -7,6 +7,6 @@ namespace ApiLoteria.Models
 {
     public class Primera
     {
-        public Concurso LaPrimera { get; set;}
+        public Sorteo LaPrimera { get; set;}
     }
 }

@@ -7,11 +7,11 @@ namespace ApiLoteria.Models
 {
     public class Leidsa
     {
-        public Concurso PegaTresMas { get; set; }
-        public Concurso LotoPool { get; set; }
-        public Concurso SuperKinoTV { get; set; }
-        public Concurso QuinielaLeidsa { get; set; }
-        public Concurso LotoMas { get; set; }
-        public Concurso SuperPale { get; set; }
+        public Sorteo PegaTresMas { get; set; }
+        public Sorteo LotoPool { get; set; }
+        public Sorteo SuperKinoTV { get; set; }
+        public Sorteo QuinielaLeidsa { get; set; }
+        public Sorteo LotoMas { get; set; }
+        public Sorteo SuperPale { get; set; }
     }
 }

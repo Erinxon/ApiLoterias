@@ -7,9 +7,9 @@ namespace ApiLoteria.Models
 {
     public class Anguila
     {
-        public Concurso AnguilaDiesAM { get; set; }
-        public Concurso AnguilaUnaPM { get; set; }
-        public Concurso AnguilaCincoPM { get; set; }
-        public Concurso AnguilaNuevePM { get; set; }
+        public Sorteo AnguilaDiesAM { get; set; }
+        public Sorteo AnguilaUnaPM { get; set; }
+        public Sorteo AnguilaCincoPM { get; set; }
+        public Sorteo AnguilaNuevePM { get; set; }
     }
 }
