@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ApiLoteria.AppSettingModels;
 using ApiLoteria.Models;
+using ApiLoteria.Models.Consts;
 using HtmlAgilityPack;
 
 namespace ApiLoteria
@@ -12,46 +13,37 @@ namespace ApiLoteria
     {
         private static string[] ObtenerNumerosGanadores(this HtmlNodeCollection htmlNodes, int posicion)
         {
-            var numeros = htmlNodes[posicion].SelectNodes(@"span")
+            return htmlNodes[posicion].SelectNodes(@"span")
                     .Select(x => x.InnerText.Replace("\n", "").Replace(" ", ""))
                     .ToArray();
-            return numeros;
+        }
+
+        private static string ObtenerTitulo(this HtmlNodeCollection htmlNodes, int posicion)
+        {
+            return htmlNodes[posicion].InnerText;
         }
 
         private static string ObtenerFecha(this HtmlNodeCollection htmlNodes, int posicion)
         {
-            var titulo = htmlNodes[posicion].InnerText.Replace(" ", "").Replace("\n", "");
-            return titulo;
+            return htmlNodes[posicion].InnerText.Replace(" ", "").Replace("\n", "");
         }
 
-        private static string obtenerImagen(this HtmlNodeCollection htmlNodes, int posicion)
+        private static string ObtenerImagen(this HtmlNodeCollection htmlNodes, int posicion)
         {
-            var imagen = htmlNodes[posicion].Attributes["src"].Value;           
-            return imagen;
+            return htmlNodes[posicion].Attributes["src"].Value;
         }
 
         private static List<SorteoEspecialResultado> ObtenerNumerosGanadoresEspeciales(this HtmlNodeCollection htmlNodes, int posicion)
         {
-            List<SorteoEspecialResultado> numerosGanadoresEspciales = new();
-            foreach (var row in htmlNodes[posicion].SelectNodes(@"tr"))
-            {
-                var nodes = row.SelectNodes("td");
-                if (nodes.Count > 1)
-                {
-                    numerosGanadoresEspciales.Add(new SorteoEspecialResultado
-                    {
-                        NumeroEspecial = nodes[0].InnerText.Replace("\n\n", "").Replace(" \n", ""),
-                        Bonus = nodes[1].InnerText.Replace("\n\n", "").Replace(" \n", ""),
-                    });
-                }
-                else
-                {
-                    numerosGanadoresEspciales.Add(new SorteoEspecialResultado
-                    {
-                        NumeroEspecial = nodes[0].InnerText.Replace("\n\n", "").Replace(" \n", ""),
-                    });
-                }
-            }
+            var nodes = htmlNodes[posicion].SelectNodes(@"tr");
+
+            var numerosGanadoresEspciales = nodes.Select(number => new SorteoEspecialResultado { 
+                NumeroEspecial = number.SelectNodes("td")[Posicion.Uno].InnerText.Replace("\n\n", "").Replace(" \n", ""),
+                Bonus = number.SelectNodes("td").Count > 1 ? 
+                        number.SelectNodes("td")[Posicion.Dos].InnerText.Replace("\n\n", "").Replace(" \n", "")
+                        : null
+            }).ToList();
+
             return numerosGanadoresEspciales;
         }
 
@@ -65,9 +57,9 @@ namespace ApiLoteria
 
             return new Sorteo
             {
-                Nombre = titulos[posicion].InnerText,
+                Nombre = titulos.ObtenerTitulo(posicion),
                 Fecha = fechas.ObtenerFecha(posicion),
-                Imagen = imagenes.obtenerImagen(posicion),
+                Imagen = imagenes.ObtenerImagen(posicion),
                 Numeros = numeros.ObtenerNumerosGanadores(posicion)
             };
         }
@@ -82,9 +74,9 @@ namespace ApiLoteria
 
             return new SorteoEspecial
             {
-                Nombre = titulos[posicion].InnerText,
+                Nombre = titulos.ObtenerTitulo(posicion),
                 Fecha = fechas.ObtenerFecha(posicion),
-                Imagen = imagenes.obtenerImagen(posicionImg),
+                Imagen = imagenes.ObtenerImagen(posicionImg),
                 Numeros = numeros.ObtenerNumerosGanadoresEspeciales(posicion)
             };
         }
