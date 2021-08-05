@@ -64,7 +64,7 @@ namespace ApiLoteria
             };
         }
 
-        public static SorteoEspecial GetTipoConcursoEspecial(HtmlDocument htmlDoc,
+        public static SorteoEspecial GetTipoSorteoEspecial(HtmlDocument htmlDoc,
             XPathExpression _xPath, int posicion, int posicionImg)
         {
             var titulos = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHTitulo);

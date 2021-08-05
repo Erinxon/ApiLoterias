@@ -15,10 +15,9 @@ namespace ApiLoteria.Services
     {
         private readonly SectionUrlPage _UrlPage;
         private readonly XPathExpression _xPathExpression;
-
-        public LoteriaServices(IOptions<SectionUrlPage> options, IOptions<XPathExpression> XPathExpression)
+        public LoteriaServices(IOptions<SectionUrlPage> urlPage, IOptions<XPathExpression> XPathExpression)
         {
-            this._UrlPage = options.Value;
+            this._UrlPage = urlPage.Value;
             this._xPathExpression = XPathExpression.Value;
         }
 
@@ -211,8 +210,8 @@ namespace ApiLoteria.Services
                     JuegaPega = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Uno),
                     GanaMas = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Dos),
                     LoteriaNacional = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Tres),
-                    BilletesJueves = Handle.GetTipoConcursoEspecial(htmlDoc, _xPathExpression, Posicion.Uno, Posicion.Cuatro),
-                    BilletesDomingo = Handle.GetTipoConcursoEspecial(htmlDoc, _xPathExpression, Posicion.Dos, Posicion.Cinco)
+                    BilletesJueves = Handle.GetTipoSorteoEspecial(htmlDoc, _xPathExpression, Posicion.Uno, Posicion.Cuatro),
+                    BilletesDomingo = Handle.GetTipoSorteoEspecial(htmlDoc, _xPathExpression, Posicion.Dos, Posicion.Cinco)
                 };         
             }
             catch (Exception ex)
