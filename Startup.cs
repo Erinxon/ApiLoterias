@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ApiLoteria.AppSetting;
+using ApiLoteria.AppSettingModels;
 using ApiLoteria.Models;
 using ApiLoteria.Services;
 using Microsoft.AspNetCore.Builder;

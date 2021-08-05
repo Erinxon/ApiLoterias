@@ -9,5 +9,6 @@ namespace ApiLoteria.Models
     {
         public string Nombre { get; set; }
         public string Fecha { get; set; }
+        public string Imagen { get; set; }
     }
 }

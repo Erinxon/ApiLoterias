@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ApiLoteria.AppSetting;
+using ApiLoteria.AppSettingModels;
 using ApiLoteria.Models;
 using HtmlAgilityPack;
 
@@ -24,66 +24,67 @@ namespace ApiLoteria
             return titulo;
         }
 
+        private static string obtenerImagen(this HtmlNodeCollection htmlNodes, int posicion)
+        {
+            var imagen = htmlNodes[posicion].Attributes["src"].Value;           
+            return imagen;
+        }
+
         private static List<ConcursoEspecialResultado> ObtenerNumerosGanadoresEspeciales(this HtmlNodeCollection htmlNodes, int posicion)
         {
-            List<ConcursoEspecialResultado> concursoEspecial = new();
+            List<ConcursoEspecialResultado> numerosGanadoresEspciales = new();
             foreach (var row in htmlNodes[posicion].SelectNodes(@"tr"))
             {
                 var nodes = row.SelectNodes("td");
                 if (nodes.Count > 1)
                 {
-                    var concurso = new ConcursoEspecialResultado
+                    numerosGanadoresEspciales.Add(new ConcursoEspecialResultado
                     {
                         NumeroEspecial = nodes[0].InnerText.Replace("\n\n", "").Replace(" \n", ""),
                         Bonus = nodes[1].InnerText.Replace("\n\n", "").Replace(" \n", ""),
-                    };
-                    concursoEspecial.Add(concurso);
+                    });
                 }
                 else
                 {
-                    var concurso = new ConcursoEspecialResultado
+                    numerosGanadoresEspciales.Add(new ConcursoEspecialResultado
                     {
                         NumeroEspecial = nodes[0].InnerText.Replace("\n\n", "").Replace(" \n", ""),
-                    };
-                    concursoEspecial.Add(concurso);
+                    });
                 }
             }
-            return concursoEspecial;
+            return numerosGanadoresEspciales;
         }
 
         public static Concurso GetTipoConcurso(HtmlDocument htmlDoc, 
             XPathExpression _xPath, int posicion)
         {
-            var titulos = htmlDoc.DocumentNode
-                .SelectNodes(_xPath.XPATHTitulo);
-            var fechas = htmlDoc.DocumentNode
-            .SelectNodes(_xPath.XPATHFecha);
-            var numeros = htmlDoc.DocumentNode
-            .SelectNodes(_xPath.XPATHNumeros);
+            var titulos = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHTitulo);
+            var fechas = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHFecha);
+            var numeros = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHNumeros);
+            var imagenes = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHImagenes);
 
             return new Concurso
             {
                 Nombre = titulos[posicion].InnerText,
                 Fecha = fechas.ObtenerFecha(posicion),
+                Imagen = imagenes.obtenerImagen(posicion),
                 Numeros = numeros.ObtenerNumerosGanadores(posicion)
             };
         }
 
         public static ConcursoEspecial GetTipoConcursoEspecial(HtmlDocument htmlDoc,
-            XPathExpression _xPath, int posicion)
+            XPathExpression _xPath, int posicion, int posicionImg)
         {
-            var titulos = htmlDoc.DocumentNode
-                .SelectNodes(_xPath.XPATHTitulo);
-            var fechas = htmlDoc.DocumentNode
-            .SelectNodes(_xPath.XPATHFecha);
+            var titulos = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHTitulo);
+            var fechas = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHFecha);
+            var numeros = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHNumerosEspeciales);
+            var imagenes = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHImagenes);
 
-            var numeros = htmlDoc.DocumentNode
-            .SelectNodes(_xPath.XPATHNumerosEspeciales);
-        
             return new ConcursoEspecial
             {
                 Nombre = titulos[posicion].InnerText,
                 Fecha = fechas.ObtenerFecha(posicion),
+                Imagen = imagenes.obtenerImagen(posicionImg),
                 Numeros = numeros.ObtenerNumerosGanadoresEspeciales(posicion)
             };
         }

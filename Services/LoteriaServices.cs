@@ -1,4 +1,4 @@
-﻿using ApiLoteria.AppSetting;
+﻿using ApiLoteria.AppSettingModels;
 using ApiLoteria.Models;
 using ApiLoteria.Response;
 using HtmlAgilityPack;
@@ -210,9 +210,9 @@ namespace ApiLoteria.Services
                     JuegaPega = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 0),
                     GanaMas = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 1),
                     LoteriaNacional = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, 2),
-                    BilletesJueves = Handle.GetTipoConcursoEspecial(htmlDoc, _xPathExpression, 0),
-                    BilletesDomingo = Handle.GetTipoConcursoEspecial(htmlDoc, _xPathExpression, 1)
-                };
+                    BilletesJueves = Handle.GetTipoConcursoEspecial(htmlDoc, _xPathExpression, 0, 3),
+                    BilletesDomingo = Handle.GetTipoConcursoEspecial(htmlDoc, _xPathExpression, 1, 4)
+                };         
             }
             catch (Exception ex)
             {
