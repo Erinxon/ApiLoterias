@@ -3,7 +3,7 @@
 ## Servidor de desarrollo
 
 1. Ejecutar el comando `dotnet run` para un iniciar la app. Luego navegar a `https://localhost:5001/api/{tipoLoteria}`. 
-2. Ejecutar el comando `dotnet watch` para que la aplicación se recarguee automáticamente si se cambia algun archivo en el proyecto.
+2. Ejecutar el comando `dotnet watch` para que la aplicación se recargue automáticamente si se cambia algun archivo en el proyecto.
 
 ## Endpoints
 
