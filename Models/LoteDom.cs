@@ -7,9 +7,6 @@ namespace ApiLoteria.Models
 {
     public class LoteDom
     {
-        public Sorteo Quiniela { get; set; }
-        public Sorteo ElQuemaitoMayor { get; set; }
-        public Sorteo SuperPale { get; set; }
-        public Sorteo AgarraCuatro { get; set; }
+        public List<Sorteo> Sorteos { get; set; }
     }
 }

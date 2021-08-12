@@ -2,6 +2,7 @@
 using ApiLoteria.Models;
 using ApiLoteria.Models.Consts;
 using ApiLoteria.Response;
+using ApiLoteria.Handles;
 using HtmlAgilityPack;
 using Microsoft.Extensions.Options;
 using System;
@@ -30,13 +31,7 @@ namespace ApiLoteria.Services
 
                 response.Data = new Americanas
                 {
-                    NewYorkTresTrenta = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Uno),
-                    NewYorkOnceTrenta = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Dos),
-                    FloridaDía = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Tres),
-                    FloridaNoche = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Cuatro),
-                    MegaMillions = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Cinco),
-                    PowerBall = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Seis),
-                    CashFourLife = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Siete),
+                    Sorteos = htmlDoc.GetSorteos(_xPathExpression)
                 };
 
             }
@@ -57,10 +52,7 @@ namespace ApiLoteria.Services
 
                 response.Data = new Anguila
                 {
-                    AnguilaDiesAM = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Uno),
-                    AnguilaUnaPM = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Dos),
-                    AnguilaCincoPM = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Tres),
-                    AnguilaNuevePM = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Cuatro),
+                    Sorteos = htmlDoc.GetSorteos(_xPathExpression)
                 };
 
             }
@@ -81,16 +73,7 @@ namespace ApiLoteria.Services
 
                 response.Data = new KingLottery
                 {
-                    PickTresDia = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Uno),
-                    PickCuatroDia = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Dos),
-                    QuinielaDoceTrenta = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Tres),
-                    PhilipsburgMedioDia = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Cuatro),
-                    LotoPoolMedioDia = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Cinco),
-                    PickTresNoche = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Seis),
-                    PickCuatroNoche = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Siete),
-                    QuinielaSieteTrenta = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Ocho),
-                    PhilipsburgNoche = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Nueve),
-                    LotoPoolNoche = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Diez),
+                    Sorteos = htmlDoc.GetSorteos(_xPathExpression)
                 };
 
             }
@@ -111,7 +94,7 @@ namespace ApiLoteria.Services
 
                 response.Data = new LaSuerte
                 {
-                    Quiniela = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Uno),
+                    Sorteos = htmlDoc.GetSorteos(_xPathExpression)
                 };
 
             }
@@ -132,12 +115,7 @@ namespace ApiLoteria.Services
 
                 response.Data = new Leidsa
                 {
-                    PegaTresMas = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Uno),
-                    LotoPool = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Dos),
-                    SuperKinoTV = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Tres),
-                    QuinielaLeidsa = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Cuatro),
-                    LotoMas = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Cinco),
-                    SuperPale = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Seis)
+                    Sorteos = htmlDoc.GetSorteos(_xPathExpression)
                 };
             }
             catch (Exception ex)
@@ -157,10 +135,7 @@ namespace ApiLoteria.Services
 
                 response.Data = new LoteDom
                 {
-                    Quiniela = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Uno),
-                    ElQuemaitoMayor = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Dos),
-                    SuperPale = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Tres),
-                    AgarraCuatro = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Cuatro)
+                    Sorteos = htmlDoc.GetSorteos(_xPathExpression)
                 };
 
             }
@@ -181,13 +156,7 @@ namespace ApiLoteria.Services
 
                 response.Data = new Loteka
                 {
-                    TocaTres = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Uno),
-                    QuinielaLoteka = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Dos),
-                    MegaChances = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Tres),
-                    MegaChancesRepartidera = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Cuatro),
-                    ElExtra = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Cinco),
-                    MegaLotto = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Seis)
-
+                    Sorteos = htmlDoc.GetSorteos(_xPathExpression)
                 };
             }
             catch (Exception ex)
@@ -207,11 +176,8 @@ namespace ApiLoteria.Services
 
                 response.Data = new Nacional
                 {
-                    JuegaPega = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Uno),
-                    GanaMas = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Dos),
-                    LoteriaNacional = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Tres),
-                    BilletesJueves = Handle.GetTipoSorteoEspecial(htmlDoc, _xPathExpression, Posicion.Uno, Posicion.Cuatro),
-                    BilletesDomingo = Handle.GetTipoSorteoEspecial(htmlDoc, _xPathExpression, Posicion.Dos, Posicion.Cinco)
+                    Sorteos = htmlDoc.GetSorteosNacional(_xPathExpression),
+                    SorteoEspeciales = htmlDoc.GetSorteosEspeciales(_xPathExpression)
                 };         
             }
             catch (Exception ex)
@@ -231,7 +197,7 @@ namespace ApiLoteria.Services
 
                 response.Data = new Primera
                 {
-                    LaPrimera = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Uno)
+                    Sorteos = htmlDoc.GetSorteos(_xPathExpression)
                 };
 
             }
@@ -252,13 +218,7 @@ namespace ApiLoteria.Services
 
                 response.Data = new Real
                 {
-                    TuFechaReal = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Uno),
-                    PegaCuatroReal = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Dos),
-                    NuevaYolReal = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Tres),
-                    QuinielaReal = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Cuatro),
-                    LotoPool = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Cinco),
-                    LotoReal = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Seis),
-                    SuperPale = Handle.GetTipoConcurso(htmlDoc, _xPathExpression, Posicion.Siete)
+                    Sorteos = htmlDoc.GetSorteos(_xPathExpression)
                 };
 
             }

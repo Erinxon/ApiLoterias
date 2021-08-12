@@ -9,11 +9,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace ApiLoteria
 {
@@ -35,16 +38,15 @@ namespace ApiLoteria
             }));
 
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiLoteria", Version = "v1" });
             });
 
-            var sectionUrlPage = Configuration.GetSection("SectionUrlPage");
-            var sectionXPathExpression = Configuration.GetSection("XPathExpression");
-            services.Configure<SectionUrlPage>(sectionUrlPage);
-            services.Configure<XPathExpression>(sectionXPathExpression);
-            services.AddScoped<ILoteriaServices, LoteriaServices>();
+            services.Configure<SectionUrlPage>(Configuration.GetSection("SectionUrlPage"));
+            services.Configure<XPathExpression>(Configuration.GetSection("XPathExpression"));
+            services.AddTransient<ILoteriaServices,LoteriaServices>();
 
             services.AddResponseCaching();
         }
@@ -56,6 +58,7 @@ namespace ApiLoteria
                    .AllowAnyOrigin()
                    .AllowAnyMethod()
                    .AllowAnyHeader());
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

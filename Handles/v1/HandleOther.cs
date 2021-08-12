@@ -7,10 +7,11 @@ using ApiLoteria.Models;
 using ApiLoteria.Models.Consts;
 using HtmlAgilityPack;
 
-namespace ApiLoteria
+namespace ApiLoteria.Handles.v1
 {
-    public static class Handle
+    public static class HandleOther
     {
+        /*
         private static string[] ObtenerNumerosGanadores(this HtmlNodeCollection htmlNodes, int posicion)
         {
             return htmlNodes[posicion].SelectNodes(@"span")
@@ -50,10 +51,10 @@ namespace ApiLoteria
         public static Sorteo GetTipoConcurso(HtmlDocument htmlDoc, 
             XPathExpression _xPath, int posicion)
         {
-            var titulos = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHTitulo);
-            var fechas = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHFecha);
-            var numeros = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHNumeros);
-            var imagenes = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHImagenes);
+            var titulos = htmlDoc.DocumentNode.SelectNodes(_xPath.V1.XPATHTitulo);
+            var fechas = htmlDoc.DocumentNode.SelectNodes(_xPath.V1.XPATHFecha);
+            var numeros = htmlDoc.DocumentNode.SelectNodes(_xPath.V1.XPATHNumeros);
+            var imagenes = htmlDoc.DocumentNode.SelectNodes(_xPath.V1.XPATHImagenes);
 
             return new Sorteo
             {
@@ -67,10 +68,10 @@ namespace ApiLoteria
         public static SorteoEspecial GetTipoSorteoEspecial(HtmlDocument htmlDoc,
             XPathExpression _xPath, int posicion, int posicionImg)
         {
-            var titulos = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHTitulo);
-            var fechas = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHFecha);
-            var numeros = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHNumerosEspeciales);
-            var imagenes = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHImagenes);
+            var titulos = htmlDoc.DocumentNode.SelectNodes(_xPath.V1.XPATHTitulo);
+            var fechas = htmlDoc.DocumentNode.SelectNodes(_xPath.V1.XPATHFecha);
+            var numeros = htmlDoc.DocumentNode.SelectNodes(_xPath.V1.XPATHNumerosEspeciales);
+            var imagenes = htmlDoc.DocumentNode.SelectNodes(_xPath.V1.XPATHImagenes);
 
             return new SorteoEspecial
             {
@@ -79,6 +80,6 @@ namespace ApiLoteria
                 Imagen = imagenes.ObtenerImagen(posicionImg),
                 Numeros = numeros.ObtenerNumerosGanadoresEspeciales(posicion)
             };
-        }
+        }*/
     }
 }

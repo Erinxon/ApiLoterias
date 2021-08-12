@@ -7,11 +7,6 @@ namespace ApiLoteria.Models
 {
     public class Leidsa
     {
-        public Sorteo PegaTresMas { get; set; }
-        public Sorteo LotoPool { get; set; }
-        public Sorteo SuperKinoTV { get; set; }
-        public Sorteo QuinielaLeidsa { get; set; }
-        public Sorteo LotoMas { get; set; }
-        public Sorteo SuperPale { get; set; }
+        public List<Sorteo> Sorteos { get; set; }
     }
 }

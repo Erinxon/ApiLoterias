@@ -1,6 +1,7 @@
 ﻿using ApiLoteria.Models;
 using ApiLoteria.Response;
 using ApiLoteria.Services;
+using HtmlAgilityPack;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -110,5 +111,7 @@ namespace ApiLoteria.Controllers
                   BadRequest(response) :
                   Ok(response);
         }
+
+
     }
 }
