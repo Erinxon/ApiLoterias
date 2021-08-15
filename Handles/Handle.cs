@@ -54,7 +54,7 @@ namespace ApiLoteria.Handles
                     {
                         NumeroEspecial = number.SelectSingleNode("td").InnerText.Replace("\n\n", "").Replace(" \n", ""),
                         Bonus = number.SelectNodes("td").Count > 1 ?
-                        number.SelectSingleNode("td").InnerText.Replace("\n\n", "").Replace(" \n", "")
+                        number.SelectNodes("td")[Posicion.Dos].InnerText.Replace("\n\n", "").Replace(" \n", "")
                         : null
                     }).ToList()
                 }).ToList();
