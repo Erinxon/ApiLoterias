@@ -11,18 +11,22 @@ namespace ApiLoteria.Handles
 {
     public static class Handle
     {
+        private static Sorteo GetSorteo(HtmlNode node, XPathExpression _xPath)
+        {
+            return new Sorteo
+            {
+                Nombre = node.SelectSingleNode(_xPath.XPATHTitulo).InnerText,
+                Fecha = node.SelectSingleNode(_xPath.XPATHFecha).InnerText.Replace(" ", "").Replace("\n", ""),
+                Imagen = node.SelectSingleNode(_xPath.XPATHImagenes).Attributes["src"].Value,
+                Numeros = node.SelectNodes(_xPath.XPATHNumeros)
+                    .Select(x => x.InnerText.Replace("\n", "").Replace(" ", "")).ToArray()
+            };
+        }
         public static List<Sorteo> GetSorteos(this HtmlDocument htmlDoc, XPathExpression _xPath)
         {
             var sorteos = htmlDoc.DocumentNode
                 .SelectNodes(_xPath.XPATHGeneral)
-                .Select(node => new Sorteo
-                 {
-                     Nombre = node.SelectSingleNode(_xPath.XPATHTitulo).InnerText,
-                     Fecha = node.SelectSingleNode(_xPath.XPATHFecha).InnerText.Replace(" ", "").Replace("\n", ""),
-                     Imagen = node.SelectSingleNode(_xPath.XPATHImagenes).Attributes["src"].Value,
-                     Numeros = node.SelectNodes(_xPath.XPATHNumeros)
-                     .Select(x => x.InnerText.Replace("\n", "").Replace(" ", "")).ToArray()
-                 }).ToList();
+                .Select(node => GetSorteo(node, _xPath)).ToList();
             return sorteos;
         }
 
@@ -30,14 +34,7 @@ namespace ApiLoteria.Handles
         {
             var htmlNodes = htmlDoc.DocumentNode.SelectNodes(_xPath.XPATHGeneral).Take(3);
             var sorteos = htmlNodes
-                .Select(node => new Sorteo
-                {
-                    Nombre = node.SelectSingleNode(_xPath.XPATHTitulo).InnerText,
-                    Fecha = node.SelectSingleNode(_xPath.XPATHFecha).InnerText.Replace(" ", "").Replace("\n", ""),
-                    Imagen = node.SelectSingleNode(_xPath.XPATHImagenes).Attributes["src"].Value,
-                    Numeros = node.SelectNodes(_xPath.XPATHNumeros)
-                     .Select(x => x.InnerText.Replace("\n", "").Replace(" ", "")).ToArray()
-                }).ToList();
+                .Select(node => GetSorteo(node, _xPath)).ToList().ToList();
             return sorteos;
         }
 
