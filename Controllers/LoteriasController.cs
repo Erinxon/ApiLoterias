@@ -5,6 +5,7 @@ using HtmlAgilityPack;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,6 +21,48 @@ namespace ApiLoteria.Controllers
         public LoteriasController(ILoteriaServices loteriaServices)
         {
             this._loteriaServices = loteriaServices;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<Response<Loteria>>> GetAllLoterias()
+        {
+            var response = new Response<Loteria>();
+            try
+            {
+                var nacional = await _loteriaServices.GetLoteriaNacionalAsync();
+                var leisa = await _loteriaServices.GetLoteriaLeisaAsync();
+                var anguila = await _loteriaServices.GetLoteriaAnguilaAsync();
+                var kingLottery = await _loteriaServices.GetLoteriaKingLotteryAsync();
+                var americanas = await _loteriaServices.GetLoteriaAmericanaAsync();
+                var suerte = await _loteriaServices.GetLoteriaLaSuerteAsync();
+                var loteDom = await _loteriaServices.GetLoteriaLoteDomAsync();
+                var loteka = await _loteriaServices.GetLoteriaLotekaAsync();
+                var primera = await _loteriaServices.GetLoteriaPrimeraAsync();
+                var real = await _loteriaServices.GetLoteriaRealAsync();
+
+                var loterias = new Loteria() { 
+                    Nacional = nacional.Data,
+                    Leidsa = leisa.Data,
+                    Real = real.Data,
+                    LoteDom = loteDom.Data,
+                    Loteka = loteka.Data,
+                    Anguila = anguila.Data,
+                    KingLottery = kingLottery.Data,
+                    Americanas = americanas.Data,
+                    LaSuerte = suerte.Data,
+                    LaPrimera = primera.Data,
+                };
+                response.Data = loterias;
+
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.message = ex.Message;
+            }
+            return !response.Success || response.Data == null ?
+                  BadRequest(response) :
+                  Ok(response);
         }
 
         [HttpGet("nacional")]

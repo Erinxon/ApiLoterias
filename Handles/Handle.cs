@@ -18,10 +18,20 @@ namespace ApiLoteria.Handles
                 Nombre = node.SelectSingleNode(_xPath.XPATHTitulo).InnerText,
                 Fecha = node.SelectSingleNode(_xPath.XPATHFecha).InnerText.Replace(" ", "").Replace("\n", ""),
                 Imagen = node.SelectSingleNode(_xPath.XPATHImagenes).Attributes["src"].Value,
-                Numeros = node.SelectNodes(_xPath.XPATHNumeros)
-                    .Select(x => x.InnerText.Replace("\n", "").Replace(" ", "")).ToArray()
+                Numeros = GetNumeros(node, _xPath.XPATHNumeros)
             };
         }
+
+        private static string[] GetNumeros(HtmlNode node, string XPATHNumeros)
+        {
+            var nodeNumeros = node.SelectNodes(XPATHNumeros);
+            var numeros = nodeNumeros is not null ? nodeNumeros.Select(x => x.InnerText.
+                        Replace("\n", "").
+                        Replace(" ", "")).
+                        ToArray() : null;
+            return numeros;
+        }
+
         public static List<Sorteo> GetSorteos(this HtmlDocument htmlDoc, XPathExpression _xPath)
         {
             var sorteos = htmlDoc.DocumentNode
