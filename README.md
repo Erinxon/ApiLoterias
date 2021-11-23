@@ -8,7 +8,7 @@
 ## Endpoints
 
 1. `https://localhost:5001/api/Loterias/nacional`
-2. `https://localhost:5001/api/Loterias/lidsa`
+2. `https://localhost:5001/api/Loterias/leidsa`
 3. `https://localhost:5001/api/Loterias/anguila`
 4. `https://localhost:5001/api/Loterias/kingLottery`
 5. `https://localhost:5001/api/Loterias/americanas`
