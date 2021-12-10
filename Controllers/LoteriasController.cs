@@ -59,10 +59,9 @@ namespace ApiLoteria.Controllers
             {
                 response.Success = false;
                 response.message = ex.Message;
+                return BadRequest(response);
             }
-            return !response.Success || response.Data == null ?
-                  BadRequest(response) :
-                  Ok(response);
+            return Ok(response);
         }
 
         [HttpGet("nacional")]
